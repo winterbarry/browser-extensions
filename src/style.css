@@ -1,3 +1,8 @@
+body {
+  height: 100vh; 
+  background: linear-gradient(to bottom, #040A1F, #060C27, #070F2F);
+}
+
 .main-container {
   margin: 4rem;
 }
