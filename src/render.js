@@ -4,6 +4,13 @@ import data from "./data.json";
 const images = require.context("./assets/images", false, /\.(png|svg|jpg|jpeg|gif)$/);
 
 export function initializeRender() {
+
+  // toggle theme based on user preference
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  document.body.classList.toggle("dark-mode", prefersDark);
+  document.body.classList.toggle("light-mode", !prefersDark);
+
+  // render extension cards
   const container = document.querySelector(".extensions-list");
   container.innerHTML = "";
 

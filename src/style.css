@@ -12,14 +12,10 @@
   justify-content: space-between;
 }
 
-/* Dark Theme */
-/* body {
-  height: 100vh; 
+body.dark-mode {
   background: linear-gradient(to bottom, #040A1F, #060C27, #070F2F);
-} */
+}
 
-/* Light Theme */
-body {
-  height: 100vh; 
+body.light-mode {
   background: linear-gradient(to bottom, #ecf3fd, #eef8fa, #eefafa);
 }
