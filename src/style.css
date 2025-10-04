@@ -14,6 +14,7 @@
 
 body.dark-mode {
   background: linear-gradient(to bottom, #040A1F, #060C27, #070F2F);
+  color: white;
 }
 
 body.light-mode {

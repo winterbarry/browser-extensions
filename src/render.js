@@ -33,3 +33,16 @@ export function initializeRender() {
     container.appendChild(extensionDiv);
   });
 }
+
+export function toggleTheme() {
+  // switch to light-mode
+  if (document.body.classList.contains("dark-mode")) {
+    document.body.classList.remove("dark-mode");
+    document.body.classList.add("light-mode");
+  } 
+  // else, switch to dark-mode
+  else {
+    document.body.classList.remove("light-mode");
+    document.body.classList.add("dark-mode");
+  }
+}
