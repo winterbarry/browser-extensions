@@ -46,3 +46,33 @@ export function toggleTheme() {
     document.body.classList.add("dark-mode");
   }
 }
+
+export function filteredRender(filteredList) {
+
+  const container = document.querySelector(".extensions-list");
+  container.innerHTML = "";
+
+  if (filteredList.length === 0) {
+    container.innerHTML = "<p>No extensions found.</p>";
+    return;
+  }
+
+  // loop through list and render
+  filteredList.forEach(extension => {
+    const extensionDiv = document.createElement("div");
+    extensionDiv.classList.add("extension-item");
+
+    const logoSrc = images(`./${extension.logo}`);
+
+    extensionDiv.innerHTML = `
+      <img src="${logoSrc}" alt="${extension.name} logo" class="extension-logo"/>
+      <div class="extension-info">
+        <h3>${extension.name}</h3>
+        <p>${extension.description}</p>
+        <p>Status: <strong>${extension.isActive ? "Active" : "Inactive"}</strong></p> 
+      </div>
+    `;
+
+    container.appendChild(extensionDiv);
+  })
+}
