@@ -1,6 +1,5 @@
 import './style.css';
-import { initializeRender } from './render.js';
-import { toggleTheme } from './render.js';
+import { initializeRender, deleteExtension, toggleExtension, toggleTheme } from './render.js';
 import { filterExtensions } from './filter.js';
 
 // initial render
@@ -22,5 +21,15 @@ toggleContainer.addEventListener("click", (event) => {
   if (event.target.tagName === "BUTTON") {
     const selected = event.target.textContent.trim(); 
     filterExtensions(selected); 
+  }
+});
+
+// remove extensions
+const removeExtension = document.querySelector(".extensions-list");
+
+removeExtension.addEventListener("click", (event) => {
+  if (event.target.classList.contains("remove-btn")) {
+    const extensionName = event.target.dataset.name;
+    deleteExtension(extensionName);
   }
 });

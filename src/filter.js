@@ -1,21 +1,32 @@
 import data from "./data.json";
 import { filteredRender } from './render.js';
 
-let currentFilter = "";
+let dataset = [...data];
+let currentFilter = "all"; //default filter
 
-export function filterExtensions (filter) {
-    currentFilter = filter.toLowerCase();
+export function getDataset() {
+    return dataset;
+}
 
-    let filteredList = [];
+export function setDataset(newData) {
+  dataset = newData;
+}
 
-    if (currentFilter === "active") {
-        filteredList = data.filter(extension => extension.isActive === true);
-    } else if (currentFilter === "inactive") {
-        filteredList = data.filter(extension => extension.isActive === false);
-    } else {
-        filteredList = data;
-    }
+export function getCurrentFilter() {
+  return currentFilter;
+}
 
-    console.log("Filtered list:", filteredList); 
-    filteredRender(filteredList);
+export function filterExtensions(filter) {
+  currentFilter = filter.toLowerCase();
+  let filteredList = [];
+
+  if (currentFilter === "active") {
+    filteredList = dataset.filter(extension => extension.isActive === true);
+  } else if (currentFilter === "inactive") {
+    filteredList = dataset.filter(extension => extension.isActive === false);
+  } else {
+    filteredList = dataset;
+  }
+
+  filteredRender(filteredList);
 }

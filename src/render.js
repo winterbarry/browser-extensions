@@ -1,24 +1,22 @@
-import data from "./data.json";
+import { getDataset, setDataset, getCurrentFilter, filterExtensions } from "./filter";
 
 // return images from ./assets/images
 const images = require.context("./assets/images", false, /\.(png|svg|jpg|jpeg|gif)$/);
 
 export function initializeRender() {
-
-  // toggle theme based on user preference
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   document.body.classList.toggle("dark-mode", prefersDark);
   document.body.classList.toggle("light-mode", !prefersDark);
 
-  // render extension cards
   const container = document.querySelector(".extensions-list");
   container.innerHTML = "";
 
-  data.forEach(extension => {
+  const dataset = getDataset();
+
+  dataset.forEach(extension => {
     const extensionDiv = document.createElement("div");
     extensionDiv.classList.add("extension-item");
 
-    // grab and store current extension logo
     const logoSrc = images(`./${extension.logo}`);
 
     extensionDiv.innerHTML = `
@@ -27,6 +25,10 @@ export function initializeRender() {
         <h3>${extension.name}</h3>
         <p>${extension.description}</p>
         <p>Status: <strong>${extension.isActive ? "Active" : "Inactive"}</strong></p> 
+      </div>
+      <div class="extension-actions">
+        <button class="remove-btn" data-name="${extension.name}">Remove</button>
+        <button class="toggle-btn">Toggle</button>
       </div>
     `;
 
@@ -48,7 +50,6 @@ export function toggleTheme() {
 }
 
 export function filteredRender(filteredList) {
-
   const container = document.querySelector(".extensions-list");
   container.innerHTML = "";
 
@@ -57,7 +58,6 @@ export function filteredRender(filteredList) {
     return;
   }
 
-  // loop through list and render
   filteredList.forEach(extension => {
     const extensionDiv = document.createElement("div");
     extensionDiv.classList.add("extension-item");
@@ -71,8 +71,23 @@ export function filteredRender(filteredList) {
         <p>${extension.description}</p>
         <p>Status: <strong>${extension.isActive ? "Active" : "Inactive"}</strong></p> 
       </div>
+      <div class="extension-actions">
+        <button class="remove-btn" data-name="${extension.name}">Remove</button>
+        <button class="toggle-btn">Toggle</button>
+      </div>
     `;
 
     container.appendChild(extensionDiv);
-  })
+  });
+}
+
+export function deleteExtension(extensionName) {
+  let dataset = getDataset();
+  const newData = dataset.filter(ext => ext.name !== extensionName); // remove extension if name matches
+  setDataset(newData);
+
+  // re-render based on currenr filter
+  const current = getCurrentFilter();
+  filterExtensions(current);
+  console.log('button sucessfully removed')
 }
