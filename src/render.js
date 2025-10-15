@@ -28,7 +28,7 @@ export function initializeRender() {
       </div>
       <div class="extension-actions">
         <button class="remove-btn" data-name="${extension.name}">Remove</button>
-        <button class="toggle-btn">Toggle</button>
+        <button class="toggle-btn" data-name="${extension.name}">Toggle</button>
       </div>
     `;
 
@@ -73,7 +73,7 @@ export function filteredRender(filteredList) {
       </div>
       <div class="extension-actions">
         <button class="remove-btn" data-name="${extension.name}">Remove</button>
-        <button class="toggle-btn">Toggle</button>
+        <button class="toggle-btn" data-name="${extension.name}">Toggle</button>
       </div>
     `;
 
