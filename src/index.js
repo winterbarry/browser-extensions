@@ -1,6 +1,6 @@
 import './style.css';
-import { initializeRender, deleteExtension, toggleExtension, toggleTheme } from './render.js';
-import { filterExtensions } from './filter.js';
+import { initializeRender, deleteExtension, toggleTheme } from './render.js';
+import { filterExtensions, toggleExtension } from './filter.js';
 
 // initial render
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,12 +24,17 @@ toggleContainer.addEventListener("click", (event) => {
   }
 });
 
-// remove extensions
-const removeExtension = document.querySelector(".extensions-list");
+// remove and toggle extensions
+const extensionsList = document.querySelector(".extensions-list");
 
-removeExtension.addEventListener("click", (event) => {
+extensionsList.addEventListener("click", (event) => {
   if (event.target.classList.contains("remove-btn")) {
     const extensionName = event.target.dataset.name;
     deleteExtension(extensionName);
+  }
+
+  if (event.target.classList.contains("toggle-btn")) {
+    const extensionName = event.target.dataset.name;
+    toggleExtension(extensionName);
   }
 });

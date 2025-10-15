@@ -30,3 +30,26 @@ export function filterExtensions(filter) {
 
   filteredRender(filteredList);
 }
+
+export function toggleExtension(extensionName) {
+  // get current dataset
+  const dataset = getDataset();
+
+  // create new dataset with active property of matching extension changed
+  const updatedData = dataset.map(extension => {
+
+    if (extension.name === extensionName) {
+      return { ...extension, isActive: !extension.isActive }; // toggle isActive
+    }
+
+    return extension;
+    
+  });
+
+  // update dataset
+  setDataset(updatedData);
+
+  // re-render list based on current filter
+  const current = getCurrentFilter();
+  filterExtensions(current);
+}
