@@ -1,12 +1,25 @@
 import { getDataset, setDataset, getCurrentFilter, filterExtensions } from "./filter";
+import logoDark from './assets/images/logo-dark.svg';
+import logoLight from './assets/images/logo-light.svg';
+import iconSun from './assets/images/icon-sun.svg';
+import iconMoon from './assets/images/icon-moon.svg';
 
 // return images from ./assets/images
 const images = require.context("./assets/images", false, /\.(png|svg|jpg|jpeg|gif)$/);
 
 export function initializeRender() {
+  // load theme based on user preference
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  document.body.classList.toggle("dark-mode", prefersDark);
-  document.body.classList.toggle("light-mode", !prefersDark);
+
+  if (prefersDark) {
+    document.body.classList.add("dark-mode");
+    document.body.classList.remove("light-mode");
+  } else {
+    document.body.classList.add("light-mode");
+    document.body.classList.remove("dark-mode");
+  }
+
+  updateThemeImages(prefersDark ? "dark" : "light");
 
   const container = document.querySelector(".extensions-list");
   container.innerHTML = "";
@@ -37,16 +50,18 @@ export function initializeRender() {
 }
 
 export function toggleTheme() {
-  // switch to light-mode
-  if (document.body.classList.contains("dark-mode")) {
+  const isDark = document.body.classList.contains("dark-mode");
+
+  if (isDark) {
     document.body.classList.remove("dark-mode");
     document.body.classList.add("light-mode");
-  } 
-  // else, switch to dark-mode
-  else {
+    updateThemeImages("light");
+  } else {
     document.body.classList.remove("light-mode");
     document.body.classList.add("dark-mode");
+    updateThemeImages("dark");
   }
+
 }
 
 export function filteredRender(filteredList) {
@@ -90,4 +105,18 @@ export function deleteExtension(extensionName) {
   const current = getCurrentFilter();
   filterExtensions(current);
   console.log('button sucessfully removed')
+}
+
+function updateThemeImages(theme) {
+  
+  const extensionLogoImg = document.querySelector('.extension-icon .logo');
+  const themeButtonImg = document.querySelector('.style-button .theme-button');
+
+  if (extensionLogoImg) {
+    extensionLogoImg.src = theme === 'dark' ? logoDark : logoLight;
+  }
+  if (themeButtonImg) {
+    themeButtonImg.src = theme === 'dark' ? iconMoon : iconSun;
+  }
+
 }
