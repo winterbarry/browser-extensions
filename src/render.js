@@ -116,7 +116,7 @@ function updateThemeImages(theme) {
     extensionLogoImg.src = theme === 'dark' ? logoDark : logoLight;
   }
   if (themeButtonImg) {
-    themeButtonImg.src = theme === 'dark' ? iconMoon : iconSun;
+    themeButtonImg.src = theme === 'dark' ? iconSun : iconMoon;
   }
 
 }

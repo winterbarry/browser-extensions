@@ -1,17 +1,4 @@
-.main-container {
-  margin: 4rem;
-}
-
-.extension-bar {
-  display: flex;
-  justify-content: space-between;
-}
-
-.extension-toggles {
-  display: flex;
-  justify-content: space-between;
-}
-
+/* Page and theme styles */
 body.dark-mode {
   background: linear-gradient(to bottom, #040A1F, #060C27, #070F2F);
   color: white;
@@ -20,3 +7,62 @@ body.dark-mode {
 body.light-mode {
   background: linear-gradient(to bottom, #ecf3fd, #eef8fa, #eefafa);
 }
+
+/* Main container styles */
+.main-container {
+  padding: 5rem;
+}
+
+/* Extension bar styles */
+.extension-bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1f2535;
+  border-radius: 12px;
+  padding: 5px;
+}
+
+/* light mode override for extension bar */
+body.light-mode .extension-bar {
+  background-color: white;
+}
+
+/* Extension icon === */
+.extension-icon {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+/* Theme button styles */
+.style-button {
+  border: none;
+  border-radius: 6px;
+  padding: 7px 8px;
+  margin-right: 5px;
+  margin-top: 6px;
+}
+
+body.dark-mode .style-button {
+  background-color: #2e344a;
+}
+
+.style-button:hover {
+  cursor: pointer;
+  filter: brightness(1.2);
+}
+
+.style-button:focus {
+  outline: 2px solid #f15b54;
+  filter: brightness(1.2);
+}
+
+body.light-mode .style-button:hover {
+  filter: brightness(0.8);
+}
+
+/* Extension toggles  */
+.extension-toggles {
+  display: flex;
+  justify-content: space-between;
+}
+
