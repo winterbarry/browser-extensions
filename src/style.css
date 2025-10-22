@@ -46,7 +46,7 @@ body.dark-mode .style-button {
   background-color: #2e344a;
 }
 
-.style-button:hover {
+body.dark-mode .style-button:hover {
   cursor: pointer;
   filter: brightness(1.2);
 }
@@ -64,5 +64,40 @@ body.light-mode .style-button:hover {
 .extension-toggles {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
+.extension-toggles-buttons button {
+  border-radius: 9999px;
+  padding: 8px 10px;
+  background-color: #2f364b;
+  border: none;
+}
+
+.extension-toggles-buttons {
+  display: flex;
+  gap: 7px;
+}
+
+body.dark-mode .extension-toggles-buttons button {
+  color: white;
+}
+
+body.dark-mode .extension-toggles-buttons button:hover {
+  filter: brightness(1.2);
+}
+
+.extension-toggles-buttons button:focus {
+  outline: 2px solid #f15b54;
+  filter: brightness(1.2);
+}
+
+.extension-toggles-buttons button:first-child {
+  padding: 8px 16px;
+}
+
+body.dark-mode .extension-toggles-buttons button:active {
+  background-color: #f15b54;
+  color: #1a1a1a;
+  border-color: #f15b54;
+}
