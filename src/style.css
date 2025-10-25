@@ -1,4 +1,5 @@
-/* Page and theme styles */
+/* page & theme styles */
+
 body.dark-mode {
   background: linear-gradient(to bottom, #040A1F, #060C27, #070F2F);
   color: white;
@@ -8,12 +9,14 @@ body.light-mode {
   background: linear-gradient(to bottom, #ecf3fd, #eef8fa, #eefafa);
 }
 
-/* Main container styles */
+/* main container styles */
+
 .main-container {
   padding: 5rem;
 }
 
-/* Extension bar styles */
+/* extension bar styles */
+
 .extension-bar {
   display: flex;
   justify-content: space-between;
@@ -22,33 +25,25 @@ body.light-mode {
   padding: 5px;
 }
 
-/* light mode override for extension bar */
 body.light-mode .extension-bar {
   background-color: white;
 }
 
-/* Extension icon === */
 .extension-icon {
   margin-top: 5px;
   margin-left: 5px;
 }
 
-/* Theme button styles */
 .style-button {
   border: none;
   border-radius: 6px;
   padding: 7px 8px;
-  margin-right: 5px;
   margin-top: 6px;
+  margin-right: 5px;
 }
 
-body.dark-mode .style-button {
-  background-color: #2e344a;
-}
-
-body.dark-mode .style-button:hover {
+.style-button:hover {
   cursor: pointer;
-  filter: brightness(1.2);
 }
 
 .style-button:focus {
@@ -56,22 +51,24 @@ body.dark-mode .style-button:hover {
   filter: brightness(1.2);
 }
 
+body.dark-mode .style-button {
+  background-color: #2e344a;
+}
+
+body.dark-mode .style-button:hover {
+  filter: brightness(1.2);
+}
+
 body.light-mode .style-button:hover {
   filter: brightness(0.8);
 }
 
-/* Extension toggles  */
+/* extension toggles bar styles */
+
 .extension-toggles {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.extension-toggles-buttons button {
-  border-radius: 9999px;
-  padding: 8px 10px;
-  background-color: #2f364b;
-  border: none;
 }
 
 .extension-toggles-buttons {
@@ -79,7 +76,21 @@ body.light-mode .style-button:hover {
   gap: 7px;
 }
 
+.extension-toggles-buttons button {
+  border: none;
+  border-radius: 9999px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.extension-toggles-buttons button:first-child {
+  padding: 8px 16px;
+}
+
+/* dark mode buttons  */
+
 body.dark-mode .extension-toggles-buttons button {
+  background-color: #2f364b;
   color: white;
 }
 
@@ -87,17 +98,41 @@ body.dark-mode .extension-toggles-buttons button:hover {
   filter: brightness(1.2);
 }
 
-.extension-toggles-buttons button:focus {
+body.dark-mode .extension-toggles-buttons button:focus {
   outline: 2px solid #f15b54;
   filter: brightness(1.2);
-}
-
-.extension-toggles-buttons button:first-child {
-  padding: 8px 16px;
 }
 
 body.dark-mode .extension-toggles-buttons button:active {
   background-color: #f15b54;
   color: #1a1a1a;
   border-color: #f15b54;
+}
+
+/* light mode buttons  */
+
+body.light-mode .extension-toggles-buttons button {
+  background-color: white;
+  color: #070F2F;
+}
+
+body.light-mode .extension-toggles-buttons button:hover {
+  opacity: 0.6;
+}
+
+body.light-mode .extension-toggles-buttons button:focus {
+  outline: 2px solid #f15b54;
+  opacity: 0.6;
+}
+
+body.light-mode .extension-toggles-buttons button:active {
+  background-color: #f15b54;
+  border-color: #f15b54;
+  color: white;
+}
+
+/* extensions list styles  */
+
+.extensions-list {
+
 }
