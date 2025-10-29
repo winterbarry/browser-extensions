@@ -282,4 +282,25 @@ body.light-mode .extension-actions button:active {
   border-color: #f15b54;
 }
 
+/* mobile styles */
 
+@media (max-width: 768px) {
+
+  /* stack extensions vertically */
+  .extensions-list {
+    grid-template-columns: 1fr; 
+  }
+
+  .main-container {
+    padding: 0;
+  }
+
+  .extension-bar {
+    width: 100vw; 
+  }
+
+  .extension-toggles {
+    flex-direction: column; 
+  }
+
+}
