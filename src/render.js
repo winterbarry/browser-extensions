@@ -8,7 +8,6 @@ import iconMoon from './assets/images/icon-moon.svg';
 const images = require.context("./assets/images", false, /\.(png|svg|jpg|jpeg|gif)$/);
 
 export function initializeRender() {
-  // load theme based on user preference
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   if (prefersDark) {
@@ -28,20 +27,64 @@ export function initializeRender() {
 
   dataset.forEach(extension => {
     const extensionDiv = document.createElement("div");
+    extensionDiv.classList.add("extension-item"); 
+
+    const logoSrc = images(`./${extension.logo}`);
+
+    extensionDiv.innerHTML = `
+      <div class="extension-info">
+        <div class="extension-image">
+          <img src="${logoSrc}" alt="${extension.name} logo" class="extension-logo"/>
+        </div>
+        <div class="extension-description">
+          <h3>${extension.name}</h3>
+          <p>${extension.description}</p>
+        </div>
+      </div>
+      <div class="extension-actions">
+        <button class="remove-btn" data-name="${extension.name}">Remove</button>
+        <label class="toggle-switch">
+          <input type="checkbox" class="toggle-btn" data-name="${extension.name}" ${extension.isActive ? "checked" : ""}>
+          <span class="slider"></span>
+        </label>
+      </div>
+    `;
+
+    container.appendChild(extensionDiv);
+  });
+}
+
+export function filteredRender(filteredList) {
+  const container = document.querySelector(".extensions-list");
+  container.innerHTML = "";
+
+  if (filteredList.length === 0) {
+    container.innerHTML = "<p>No extensions found.</p>";
+    return;
+  }
+
+  filteredList.forEach(extension => {
+    const extensionDiv = document.createElement("div");
     extensionDiv.classList.add("extension-item");
 
     const logoSrc = images(`./${extension.logo}`);
 
     extensionDiv.innerHTML = `
-      <img src="${logoSrc}" alt="${extension.name} logo" class="extension-logo"/>
       <div class="extension-info">
-        <h3>${extension.name}</h3>
-        <p>${extension.description}</p>
-        <p>Status: <strong>${extension.isActive ? "Active" : "Inactive"}</strong></p> 
+        <div class="extension-image">
+          <img src="${logoSrc}" alt="${extension.name} logo" class="extension-logo"/>
+        </div>
+        <div class="extension-description">
+          <h3>${extension.name}</h3>
+          <p>${extension.description}</p>
+        </div>
       </div>
       <div class="extension-actions">
         <button class="remove-btn" data-name="${extension.name}">Remove</button>
-        <button class="toggle-btn" data-name="${extension.name}">Toggle</button>
+        <label class="toggle-switch">
+          <input type="checkbox" class="toggle-btn" data-name="${extension.name}" ${extension.isActive ? "checked" : ""}>
+          <span class="slider round"></span>
+        </label>
       </div>
     `;
 
@@ -62,38 +105,6 @@ export function toggleTheme() {
     updateThemeImages("dark");
   }
 
-}
-
-export function filteredRender(filteredList) {
-  const container = document.querySelector(".extensions-list");
-  container.innerHTML = "";
-
-  if (filteredList.length === 0) {
-    container.innerHTML = "<p>No extensions found.</p>";
-    return;
-  }
-
-  filteredList.forEach(extension => {
-    const extensionDiv = document.createElement("div");
-    extensionDiv.classList.add("extension-item");
-
-    const logoSrc = images(`./${extension.logo}`);
-
-    extensionDiv.innerHTML = `
-      <img src="${logoSrc}" alt="${extension.name} logo" class="extension-logo"/>
-      <div class="extension-info">
-        <h3>${extension.name}</h3>
-        <p>${extension.description}</p>
-        <p>Status: <strong>${extension.isActive ? "Active" : "Inactive"}</strong></p> 
-      </div>
-      <div class="extension-actions">
-        <button class="remove-btn" data-name="${extension.name}">Remove</button>
-        <button class="toggle-btn" data-name="${extension.name}">Toggle</button>
-      </div>
-    `;
-
-    container.appendChild(extensionDiv);
-  });
 }
 
 export function deleteExtension(extensionName) {
