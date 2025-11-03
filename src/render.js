@@ -37,7 +37,7 @@ export function initializeRender() {
           <img src="${logoSrc}" alt="${extension.name} logo" class="extension-logo"/>
         </div>
         <div class="extension-description">
-          <h3>${extension.name}</h3>
+          <h4>${extension.name}</h4>
           <p>${extension.description}</p>
         </div>
       </div>
@@ -75,7 +75,7 @@ export function filteredRender(filteredList) {
           <img src="${logoSrc}" alt="${extension.name} logo" class="extension-logo"/>
         </div>
         <div class="extension-description">
-          <h3>${extension.name}</h3>
+          <h4>${extension.name}</h4>
           <p>${extension.description}</p>
         </div>
       </div>
@@ -83,7 +83,7 @@ export function filteredRender(filteredList) {
         <button class="remove-btn" data-name="${extension.name}">Remove</button>
         <label class="toggle-switch">
           <input type="checkbox" class="toggle-btn" data-name="${extension.name}" ${extension.isActive ? "checked" : ""}>
-          <span class="slider round"></span>
+          <span class="slider"></span>
         </label>
       </div>
     `;
