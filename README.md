@@ -136,7 +136,7 @@ npm install
 
 ### Run the Project
 
-If using Vite or similar:
+If using Webpack or similar:
 
 ```bash
 npm run dev
